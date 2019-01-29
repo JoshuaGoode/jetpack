@@ -386,3 +386,26 @@ function jetpack_mailchimp_block_load_assets( $attr ) {
 	$html = ob_get_clean();
 	return $html;
 }
+
+/**
+ * Visited Block
+ */
+jetpack_register_block( 
+	'visited', 
+	array(
+		'render_callback' => 'jetpack_visited_block_render',
+	)
+);
+
+/**
+ * Visited block dependency declaration.
+ *
+ * @param array  $attributes - Array containing the map block attributes.
+ * @param string $content - String containing the visited block content.
+ *
+ * @return string
+ */
+function jetpack_visited_block_render( $attributes, $content ) {
+	Jetpack_Gutenberg::load_assets_as_required( 'visited' );
+	return $content;
+}
