@@ -75,7 +75,12 @@ class Jetpack_WordAds_Shortcode {
 			return $wordads->get_ad( 'inline', 'house' );
 		}
 
-		$section_id = 0 === $wordads->params->blog_id ? WORDADS_API_TEST_ID : $wordads->params->blog_id . '6'; // 6 is to keep track of gutenblock ads
+		// section_id is mostly depricated at this point, but it helps us (devs) keep track of which ads end up where
+		// 6 is to keep track of gutenblock ads
+		$section_id = 0 === $wordads->params->blog_id ?
+			WORDADS_API_TEST_ID :
+			$wordads->params->blog_id . '6';
+
 		$align = 'center';
 		if ( isset( $attr['align'] ) && in_array( $attr['align'], array( 'left', 'center', 'right' ) ) ) {
 			$align = $attr['align'];
@@ -87,8 +92,8 @@ class Jetpack_WordAds_Shortcode {
 			$format = $attr['format'];
 		}
 
-		$height = WordAds::$ad_tag_ids[$format]['height'];
-		$width = WordAds::$ad_tag_ids[$format]['width'];
+		$height  = WordAds::$ad_tag_ids[ $format ]['height'];
+		$width   = WordAds::$ad_tag_ids[ $format ]['width'];
 		$snippet = $wordads->get_ad_snippet( $section_id, $height, $width, 'inline', 'float:left;margin-right:5px;margin-top:0px;' );
 		return $wordads->get_ad_div( 'inline', $snippet, array( $align ) );
 	}

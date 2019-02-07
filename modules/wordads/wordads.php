@@ -479,7 +479,7 @@ HTML;
 	}
 
 	/**
-	 * Returns the completed ad div with snipped to be inserted into the page
+	 * Returns the complete ad div with snippet to be inserted into the page
 	 *
 	 * @param  string  $spot top, side, inline, or belowpost
 	 * @param  string  $snippet The snippet to insert into the div
