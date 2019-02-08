@@ -238,11 +238,10 @@ function jetpack_business_hours_render( $attributes, $content ) {
 		return $content;
 	}
 
-	$start_of_week     = (int) get_option( 'start_of_week', 0 );
-	$time_format       = get_option( 'time_format' );
-	$today             = current_time( 'D' );
-	$custom_class_name = isset( $attributes['className'] ) ? $attributes['className'] : '';
-	$content           = sprintf(
+	$start_of_week = (int) get_option( 'start_of_week', 0 );
+	$time_format   = get_option( 'time_format' );
+	$today         = current_time( 'D' );
+	$content       = sprintf(
 		'<dl class="jetpack-business-hours %s">',
 		! empty( $attributes['className'] ) ? esc_attr( $attributes['className'] ) : ''
 	);
@@ -256,20 +255,20 @@ function jetpack_business_hours_render( $attributes, $content ) {
 	}
 
 	foreach ( $attributes['hours'] as $day => $hours ) {
-	    $content .= '<dt class="' . esc_attr( $day ) . '">' .
-			ucfirst( $wp_locale->get_weekday( array_search( $day, $days ) ) ) .
-			'</dt>';
-		$content .= '<dd class="' . esc_attr( $day ) . '">';
+		$content    .= '<dt class="' . esc_attr( $day ) . '">' .
+					   ucfirst( $wp_locale->get_weekday( array_search( $day, $days ) ) ) .
+					   '</dt>';
+		$content    .= '<dd class="' . esc_attr( $day ) . '">';
 		$days_hours = '';
 
-		foreach( $hours as $hour ) {
-		    if ( ! $hour['opening'] && $hour['closing'] ) {
-		        continue;
-            }
-			$opening = strtotime( $hour['opening'] );
-			$closing = strtotime( $hour['closing'] );
+		foreach ( $hours as $hour ) {
+			if ( ! $hour['opening'] && $hour['closing'] ) {
+				continue;
+			}
+			$opening    = strtotime( $hour['opening'] );
+			$closing    = strtotime( $hour['closing'] );
 			$days_hours .= sprintf(
-			    /* Translators: Business opening hours info. */
+			/* Translators: Business opening hours info. */
 				_x( 'From %1$s to %2$s', 'from business opening hour to closing hour', 'jetpack' ),
 				date( $time_format, $opening ),
 				date( $time_format, $closing )
@@ -294,11 +293,11 @@ function jetpack_business_hours_render( $attributes, $content ) {
 				}
 			}
 			$days_hours .= '<br />';
-        }
+		}
 
-        if ( empty( $days_hours ) ) {
-		    $days_hours = esc_html__( 'CLOSED', 'jetpack' );
-        }
+		if ( empty( $days_hours ) ) {
+			$days_hours = esc_html__( 'CLOSED', 'jetpack' );
+		}
 		$content .= $days_hours;
 		$content .= '</dd>';
 	}
