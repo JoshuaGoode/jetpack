@@ -55,7 +55,7 @@ class WP_Test_Jetpack_Sync_Functions extends WP_Test_Jetpack_Sync_Base {
 		if ( function_exists( 'register_block_type' ) ) {
 			add_filter( 'jetpack_set_available_extensions',  array( $this, 'add_test_block' ) );
 			Jetpack_Gutenberg::init();
-			register_block_type( 'jetpack/test' );
+			jetpack_safe_register_block_type( 'jetpack/test' );
 		}
 
 		$callables = array(
