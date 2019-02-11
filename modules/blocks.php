@@ -10,7 +10,7 @@
  *
  * @since 6.8.0
  */
-jetpack_safe_register_block_type(
+jetpack_register_block_type(
 	'jetpack/map',
 	array(
 		'render_callback' => 'jetpack_map_block_load_assets',
@@ -49,7 +49,7 @@ if (
 	( defined( 'IS_WPCOM' ) && IS_WPCOM ) ||
 	class_exists( 'Jetpack_Photon' ) && Jetpack::is_module_active( 'photon' )
 ) {
-	jetpack_safe_register_block_type(
+	jetpack_register_block_type(
 		'jetpack/tiled-gallery',
 		array(
 			'render_callback' => 'jetpack_tiled_gallery_load_block_assets',
@@ -90,7 +90,7 @@ if (
  *
  * @since 7.0.0
  */
-jetpack_safe_register_block_type(
+jetpack_register_block_type(
 	'jetpack/gif',
 	array(
 		'render_callback' => 'jetpack_gif_block_render',
@@ -152,21 +152,21 @@ function jetpack_gif_block_render( $attr ) {
 /**
  * Contact Info block and its child blocks.
  */
-jetpack_safe_register_block_type(
+jetpack_register_block_type(
 	'jetpack/contact-info',
 	array(
 		'render_callback' => 'jetpack_contact_info_block_load_assets',
 	)
 );
-jetpack_safe_register_block_type(
+jetpack_register_block_type(
 	'jetpack/email',
 	array( 'parent' => array( 'jetpack/contact-info' ) )
 );
-jetpack_safe_register_block_type(
+jetpack_register_block_type(
 	'jetpack/address',
 	array( 'parent' => array( 'jetpack/contact-info' ) )
 );
-jetpack_safe_register_block_type(
+jetpack_register_block_type(
 	'jetpack/phone',
 	array( 'parent' => array( 'jetpack/contact-info' ) )
 );
@@ -187,12 +187,12 @@ function jetpack_contact_info_block_load_assets( $attr, $content ) {
 /**
  * VR Block.
  */
-jetpack_safe_register_block_type( 'jetpack/vr' );
+jetpack_register_block_type( 'jetpack/vr' );
 
 /**
  * Slideshow Block.
  */
-jetpack_safe_register_block_type(
+jetpack_register_block_type(
 	'jetpack/slideshow',
 	array(
 		'render_callback' => 'jetpack_slideshow_block_load_assets',
@@ -221,7 +221,7 @@ function jetpack_slideshow_block_load_assets( $attr, $content ) {
 /**
  * Business Hours Block.
  */
-jetpack_safe_register_block_type(
+jetpack_register_block_type(
 	'jetpack/business-hours',
 	array( 'render_callback' => 'jetpack_business_hours_render' )
 );
@@ -307,7 +307,7 @@ function jetpack_business_hours_render( $attributes, $content ) {
  * Mailchimp Block.
  */
 if ( ( defined( 'IS_WPCOM' ) && IS_WPCOM ) || Jetpack::is_active() ) {
-	jetpack_safe_register_block_type(
+	jetpack_register_block_type(
 		'jetpack/mailchimp',
 		array(
 			'render_callback' => 'jetpack_mailchimp_block_load_assets',
